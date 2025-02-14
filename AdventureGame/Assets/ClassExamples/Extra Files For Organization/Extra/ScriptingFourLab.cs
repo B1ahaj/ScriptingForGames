@@ -13,7 +13,7 @@ public class ScriptingFourLab : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        thisTransform = thisTransform;
+        thisTransform = transform;
     }
 
     // Update is called once per frame
