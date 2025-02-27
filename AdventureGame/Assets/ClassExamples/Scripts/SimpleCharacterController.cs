@@ -13,6 +13,7 @@ public class SimpleCharacterController : MonoBehaviour
     private CharacterController controller;
     private Vector3 velocity;
     private Transform thisTransform;
+    private Animator animator;
     
     public AudioSource audioSource;
     public UnityEvent keypressEvent;
@@ -23,30 +24,23 @@ public class SimpleCharacterController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         audioSource = GetComponent<AudioSource>();
         thisTransform = transform;
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        MoveCharacter();
+
         ApplyGravity();
+        //CheckGround();
+        MoveCharacter();
         KeepCharacterOnXAxis();
         if (Input.GetButtonDown("Jump") && controller.isGrounded)
+
         {
             velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
-            //audioSource.Play();
-            StaminaFunction();
         }
-
-        QuitGame();
-    }
-
-    private void MoveCharacter()
-    {
-        // Horizontal movement
-        var moveInput = Input.GetAxis("Horizontal");
-        var move = new Vector3(moveInput, 0f, 0f) * (moveSpeed * Time.deltaTime);
-        controller.Move(move);
         
+        QuitGame();
     }
 
     private void ApplyGravity()
@@ -62,8 +56,36 @@ public class SimpleCharacterController : MonoBehaviour
         }
 
         // Apply the velocity to the controller
-        controller.Move(velocity * Time.deltaTime);
+        controller.SimpleMove(velocity * Time.deltaTime);
     }
+   // private void CheckGround()
+   // {
+    //    if (controller.isGrounded)
+    //    {
+    //        Debug.Log("I'm on the Ground ya turkey");
+    //    }
+   // }
+  
+    private void MoveCharacter()
+    {
+        // Horizontal movement
+        //if (Input.GetButtonDown("Jump") )
+        //{
+       //     velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
+       // }
+
+      //  if (velocity.y <= 0f)
+       // {
+       //     animator.SetTrigger("Fall");
+       // }
+        var moveInput = Input.GetAxis("Horizontal");
+        var move = new Vector3(moveInput, 0f, 0f) * (moveSpeed * Time.deltaTime);
+        controller.Move(move);
+       
+     
+      
+    }
+    
 
     private void KeepCharacterOnXAxis()
     {

@@ -21,14 +21,14 @@ public class CharacterAnimationController : MonoBehaviour
     private void HandleAnimations()
     {
        //Triggers the Double Jump Animation
-        if (Input.GetButtonDown("Jump"))
-        {
-            animator.SetTrigger("Jump");
-        }
-        else
-        {
-            animator.SetTrigger("Idle");
-        }
+       // if (Input.GetButtonDown("Jump"))
+      //  {
+      //      animator.SetTrigger("Jump");
+       // }
+     //   else
+     //   {
+     //       animator.SetTrigger("Idle");
+     //   }
 
        //Triggers the Hit Animation
         if (Input.GetKeyDown(KeyCode.H))
