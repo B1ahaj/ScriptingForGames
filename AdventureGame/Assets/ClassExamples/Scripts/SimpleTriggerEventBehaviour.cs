@@ -9,6 +9,9 @@ public class SimpleTriggerEventBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        triggerEvent.Invoke();
+        if (other.gameObject.tag == "Player")
+        {
+            triggerEvent.Invoke();
+        }
     }
 }

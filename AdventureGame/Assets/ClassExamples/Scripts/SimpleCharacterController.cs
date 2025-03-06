@@ -1,6 +1,8 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
+
 public class SimpleCharacterController : MonoBehaviour
 {
     public float moveSpeed = 5f;
@@ -10,11 +12,15 @@ public class SimpleCharacterController : MonoBehaviour
     private CharacterController controller;
     private Vector3 velocity;
     private Transform thisTransform;
+    private AudioSource sound;
+    
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
         thisTransform = transform;
+        sound = GetComponent<AudioSource>();
+        
     }
 
     private void Update()
@@ -35,6 +41,7 @@ public class SimpleCharacterController : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
+            sound.Play();
         }
     }
 
@@ -60,5 +67,13 @@ public class SimpleCharacterController : MonoBehaviour
         var currentPosition = thisTransform.position;
         currentPosition.z = 0f;
         thisTransform.position = currentPosition;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Collectable")
+        {
+            Destroy(other.gameObject);
+        }
     }
 }
