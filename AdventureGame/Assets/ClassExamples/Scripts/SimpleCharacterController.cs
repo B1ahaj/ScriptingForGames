@@ -13,7 +13,7 @@ public class SimpleCharacterController : MonoBehaviour
     private Vector3 velocity;
     private Transform thisTransform;
     private AudioSource sound;
-    
+   
 
     private void Start()
     {
@@ -69,11 +69,12 @@ public class SimpleCharacterController : MonoBehaviour
         thisTransform.position = currentPosition;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Collectable")
-        {
-            Destroy(other.gameObject);
-        }
-    }
+   // private void OnTriggerEnter(Collider other)
+   // {
+    //    if (other.gameObject.tag == "Collectable")
+    //    {
+    //        Destroy(other.gameObject);
+            
+    //    }
+   // }
 }
