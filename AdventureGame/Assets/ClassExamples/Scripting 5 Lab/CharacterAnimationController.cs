@@ -48,5 +48,14 @@ public class CharacterAnimationController : MonoBehaviour
         {
             animator.SetTrigger("Idle");
         }
+
+        if (Input.GetButton("Horizontal"))
+        {
+            animator.SetTrigger("Run");
+        }
+        else
+        {
+            animator.SetTrigger("Idle");
+        }
     }
 }
