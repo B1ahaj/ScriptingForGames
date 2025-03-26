@@ -1,12 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Util/Destruction Util")]
-public class Destroying: ScriptableObject
-{
+
+public class Destroying: MonoBehaviour
+{ 
+    private Collider myCollider;
+    void Start()
+    {
+        myCollider = GetComponent<Collider>();
+    }
+
     public void Destroyer(GameObject gameObject)
     {
-        Object.Destroy(gameObject);
+        Destroy(myCollider);
+        Object.Destroy(gameObject, 1f);
     }
 }
